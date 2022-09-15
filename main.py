@@ -18,9 +18,10 @@ def get_links_photo_spacex(link_launch):
     response = requests.get(link_launch)
     response.raise_for_status()
     launch_url = response.json()
-    photo_urls = launch_url['links']['flickr']['original']
+    photo_urls = launch_url.get('links').get('flickr').get('original')
     return photo_urls
 
 
+# url = 'https://api.spacexdata.com/v5/launches/latest'
 url = 'https://api.spacexdata.com/v5/launches/5eb87d47ffd86e000604b38a'
 print(get_links_photo_spacex(url))
