@@ -2,12 +2,18 @@ import requests
 from pathlib import Path
 from urllib.parse import urlparse
 from os.path import splitext
+import os
 import datetime
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 
 name_photo = 'hubble.jpeg'
 url_photo = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'}
+
 
 def save_image(url, filename):
     response = requests.get(url, headers=headers)
@@ -42,7 +48,7 @@ def get_photo_ext(url):
 
 def get_apod_photo(num_photo):
     url = 'https://api.nasa.gov/planetary/apod'
-    api_key = '4k7CpSmTMmYG2wjuqM6lgFi7gfHx9J7fagkDlx6P'
+    api_key = os.environ['API_KEY']
     params = {"api_key": api_key, "count": num_photo}
     response = requests.get(url, params=params)
     response.raise_for_status()
@@ -58,7 +64,7 @@ def get_apic_photo(date):
     apic_date = datetime.date.fromisoformat(date)
     year, month, day = apic_date.year, apic_date.month, apic_date.day
     # year, month, day = date.split(" ")[0].split("-")
-    api_key = '4k7CpSmTMmYG2wjuqM6lgFi7gfHx9J7fagkDlx6P'
+    api_key = os.environ['API_KEY']
     params = {"api_key": api_key}
     url_natural = f"https://api.nasa.gov/EPIC/api/natural/date/{apic_date}/?api_key={api_key}"
     response = requests.get(url_natural, params=params)
@@ -71,9 +77,8 @@ def get_apic_photo(date):
 
 
 def main():
-
     # save_image(url_photo, name_photo)
-    # get_apod_photo(5)
+    get_apod_photo(15)
     # get_apic_photo('2022-05-20')
 
 
