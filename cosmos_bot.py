@@ -8,4 +8,9 @@ load_dotenv()
 
 api_telegram = os.environ['API_TELEGRAM']
 bot = telegram.Bot(token=api_telegram)
-bot.send_message(text='Привет!', chat_id='@tk_elbrus')
+chat_id = '@tk_elbrus'
+# bot.send_message(chat_id='@tk_elbrus', text="Hi!")
+bot.send_document(chat_id=chat_id, document=open('image/nasa_apod_8.jpg', 'rb'))
+
+
+
