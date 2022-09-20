@@ -7,10 +7,10 @@ load_dotenv()
 
 
 api_telegram = os.environ['API_TELEGRAM']
+chat_id = os.environ['CHAT_ID']
 bot = telegram.Bot(token=api_telegram)
-chat_id = '@tk_elbrus'
-bot.send_message(chat_id='@tk_elbrus', text="Hi!")
-bot.send_document(chat_id=chat_id, document=open('image/nasa_apod_8.jpg', 'rb'))
+chat_id = chat_id
+bot.send_document(chat_id=chat_id, document=open('image/nasa_apod_9.jpg', 'rb'))
 
 
 
