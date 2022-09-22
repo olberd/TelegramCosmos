@@ -9,11 +9,11 @@ from load_images_core import get_images_from_dir
 load_dotenv()
 
 
-api_telegram = os.environ['API_TELEGRAM']
+token_telegram = os.environ['TOKEN_TELEGRAM']
 chat_id = os.environ['CHAT_ID']
 
 
-bot = telegram.Bot(token=api_telegram)
+bot = telegram.Bot(token=token_telegram)
 
 
 def send_photo():

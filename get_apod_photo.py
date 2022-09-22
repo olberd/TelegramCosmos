@@ -14,7 +14,7 @@ def get_apod_photo():
     parser = argparse.ArgumentParser(description='Скачивает фото космоса')
     parser.add_argument('number', help='Сколько скачивать фото')
     args = parser.parse_args()
-    api_key = os.environ['API_KEY']
+    api_key = os.environ['TOKEN_NASA']
     params = {"api_key": api_key, "count": args.number}
     response = requests.get(URL_APOD, params=params)
     response.raise_for_status()
