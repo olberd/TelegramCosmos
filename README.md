@@ -36,8 +36,8 @@ VvolhJZVcfM2A11W8NofzEewF6yvY0o2o8d57Y7Y
 
 Пример заполненного файла .env:
 ```
-TOKEN_NASA="your token here"
-TOKEN_TELEGRAM="your token here"
+NASA_TOKEN="your token here"
+TELEGRAM_TOKEN="your token here"
 CHAT_ID="@your_channel_name"
 TIMEOUT_POST="delay in minutes"
 ```

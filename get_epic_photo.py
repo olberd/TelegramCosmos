@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 from load_images_core import save_image
 
 
-load_dotenv()
-
 EPIC_API_URL = 'https://api.nasa.gov/EPIC/api/natural/date/'
 EPIC_NATURAL_URL = 'https://api.nasa.gov/EPIC/archive/natural/'
 
@@ -18,7 +16,7 @@ def get_epic_photo():
     args = parser.parse_args()
     apic_date = datetime.date.fromisoformat(args.date)
     year, month, day = apic_date.year, apic_date.month, apic_date.day
-    token_nasa = os.environ['TOKEN_NASA']
+    # token_nasa = os.environ['NASA_TOKEN']
     params = {"api_key": token_nasa}
     url_natural = f"{EPIC_API_URL}{apic_date}/"
     response = requests.get(url_natural, params=params)
@@ -31,4 +29,6 @@ def get_epic_photo():
 
 
 if __name__ == "__main__":
+    load_dotenv()
+    token_nasa = os.environ['NASA_TOKEN']
     get_epic_photo()

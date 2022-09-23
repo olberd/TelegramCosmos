@@ -19,7 +19,7 @@ def main():
     while True:
         for img in images:
             with open(img, 'rb') as image:
-                bot.send_photo(chat_id=chat_id, photo=images)
+                bot.send_photo(chat_id=chat_id, photo=image)
             time.sleep(minutes)
         else:
             random.shuffle(images)
