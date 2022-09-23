@@ -5,14 +5,14 @@ from urllib.parse import urlparse
 from os.path import splitext
 
 
-name_photo = 'hubble.jpeg'
-url_photo = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+NAME_PHOTO = 'hubble.jpeg'
+PHOTO_URL = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
+HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/104.0.0.0 Safari/537.36'}
 
 
 def save_image(url, filename):
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=HEADERS)
     response.raise_for_status()
     path = Path('image', filename)
     path.parent.mkdir(exist_ok=True, parents=True)
@@ -20,8 +20,8 @@ def save_image(url, filename):
         file.write(response.content)
 
 
-def get_links_photo_spacex(link_launch):
-    response = requests.get(link_launch)
+def get_links_photo_spacex(launch_link):
+    response = requests.get(launch_link)
     response.raise_for_status()
     launch_url = response.json()
     photo_urls = launch_url.get('links').get('flickr').get('original')
@@ -36,8 +36,10 @@ def get_photo_ext(url):
 
 def get_images_from_dir():
     path = 'image/'
-    filelist = []
+    file_in_dir = []
     for root, dirs, files in os.walk(path):
         for file in files:
-            filelist.append(os.path.join(root, file))
-    return filelist
+            file_in_dir.append(os.path.join(root, file))
+    return file_in_dir
+
+

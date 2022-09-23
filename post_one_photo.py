@@ -6,29 +6,27 @@ from dotenv import load_dotenv
 from load_images_core import get_images_from_dir
 
 
-load_dotenv()
-
-
-token_telegram = os.environ['TOKEN_TELEGRAM']
-chat_id = os.environ['CHAT_ID']
-
-
-bot = telegram.Bot(token=token_telegram)
-
-
 def send_photo():
+    bot = telegram.Bot(token=token_telegram)
     parser = argparse.ArgumentParser(description='Публикует одно фото из каталога Image в телеграм канал, '
                                                  'если не указано - случайную')
     parser.add_argument('-p', '--photo', help='Укажите название фотографии')
     args = parser.parse_args()
 
     if args.photo:
-        bot.send_photo(chat_id=chat_id, photo=open(f'image/{args.photo}', 'rb'))
+        with open(f'image/{args.photo}', 'rb') as image:
+            bot.send_photo(chat_id=chat_id, photo=image)
 
     else:
         photo = random.choice(get_images_from_dir())
-        bot.send_photo(chat_id=chat_id, photo=open(photo, 'rb'))
+        with open(photo, 'rb') as image:
+            bot.send_photo(chat_id=chat_id, photo=image)
 
 
 if __name__ == "__main__":
+    load_dotenv()
+
+    token_telegram = os.environ['TELEGRAM_TOKEN']
+    chat_id = os.environ['CHAT_ID']
+
     send_photo()
