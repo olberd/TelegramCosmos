@@ -11,7 +11,6 @@ from load_images_core import get_images_from_dir
 def send_photo(token_telegram, chat_id, photo):
     bot = telegram.Bot(token=token_telegram)
     if photo:
-        # photo = os.path.join('image/', photo)
         photo = Path.cwd() / 'image' / photo
         with open(photo, 'rb') as image:
             bot.send_photo(chat_id=chat_id, photo=image)
