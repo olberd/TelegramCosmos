@@ -37,8 +37,8 @@ def get_photo_ext(url):
 
 def get_images_from_dir():
     path = 'image/'
-    file_in_dir = []
+    file_in_dirs = []
     for root, dirs, files in os.walk(path):
         for file in files:
-            file_in_dir.append(os.path.join(root, file))
-    return file_in_dir
+            file_in_dirs.append(os.path.join(root, file))
+    return file_in_dirs
