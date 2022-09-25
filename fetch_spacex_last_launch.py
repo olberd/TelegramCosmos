@@ -7,8 +7,8 @@ LAUNCHERS_URL = 'https://api.spacexdata.com/v5/launches/'
 
 def fetch_spacex_last_launch(launch):
     launch_url = f'{LAUNCHERS_URL}{launch}'
-    links_photo_spacex = get_links_photo_spacex(launch_url)
-    for num, photo_spacex_url in enumerate(links_photo_spacex):
+    spacex_photo_links = get_links_photo_spacex(launch_url)
+    for num, photo_spacex_url in enumerate(spacex_photo_links):
         ext = get_photo_ext(photo_spacex_url)
         if ext in ['.jpg', '.jpeg', '.gif', '.png']:
             spacex_photo = f'spacex_{num}{ext}'

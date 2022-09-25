@@ -22,14 +22,14 @@ def send_photo(token_telegram, chat_id, photo):
 
 def main():
     load_dotenv()
-    token_telegram = os.environ['TELEGRAM_TOKEN']
+    telegram_token = os.environ['TELEGRAM_TOKEN']
     chat_id = os.environ['CHAT_ID']
     parser = argparse.ArgumentParser(description='Публикует одно фото из каталога Image в телеграм канал, '
                                                  'если не указано - случайную')
     parser.add_argument('-p', '--photo', help='Укажите название фотографии')
     args = parser.parse_args()
     photo = args.photo
-    send_photo(token_telegram, chat_id, photo)
+    send_photo(telegram_token, chat_id, photo)
 
 
 if __name__ == "__main__":
