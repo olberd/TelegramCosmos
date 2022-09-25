@@ -11,8 +11,9 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
                          'Chrome/104.0.0.0 Safari/537.36'}
 
 
-def save_image(url, filename):
-    response = requests.get(url, headers=HEADERS)
+def save_image(url, filename, nasa_token=None):
+    params = {"api_key": nasa_token}
+    response = requests.get(url, headers=HEADERS, params=params)
     response.raise_for_status()
     path = Path('image', filename)
     path.parent.mkdir(exist_ok=True, parents=True)
@@ -41,5 +42,3 @@ def get_images_from_dir():
         for file in files:
             file_in_dir.append(os.path.join(root, file))
     return file_in_dir
-
-
